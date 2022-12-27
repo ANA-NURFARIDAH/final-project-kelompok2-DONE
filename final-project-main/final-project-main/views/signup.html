@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script src="/js/signupPost.js"></script>
+  <title>Sign Up</title>
+
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .main {
+      /* Full height */
+      height: 100%;
+
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    img {
+      width: 100%;
+      height: 100vh;
+
+    }
+
+    *:before,
+    *:after {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    /* body{
+    background-color: #080710;
+} */
+    .background {
+      width: 430px;
+      height: 500px;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
+    }
+
+    ::placeholder {
+      color: black;
+    }
+
+    form {
+      height: 600px;
+      width: 600px;
+      background-color: #678983;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+      border-radius: 30px;
+      backdrop-filter: blur(px);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+      padding: 50px 50px;
+      background-image: linear-gradient(to bottom right, #7D8F69, #678983, #557153, #3C4048);
+
+    }
+
+    form * {
+      font-family: 'Poppins', sans-serif;
+      color: black;
+      letter-spacing: 0.5px;
+      outline: none;
+      border: none;
+    }
+
+    .social {
+      margin-top: 30px;
+      display: flex;
+    }
+
+    .social div {
+      background: red;
+      width: 150px;
+      border-radius: 3px;
+      padding: 5px 10px 10px 5px;
+      background-color: rgba(255, 255, 255, 0.27);
+      color: #eaf0fb;
+      text-align: center;
+    }
+
+    .social div:hover {
+      background-color: rgba(255, 255, 255, 0.47);
+    }
+
+    .social .fb {
+      margin-left: 25px;
+    }
+
+    .social i {
+      margin-right: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <img src="http://localhost/final-project-main/final-project-main/public/img/b5.jpg">
+    <form id="signUpForm">
+      <h1 style="text-align: center;">Sign Up</h1>
+      <div class="form-group">
+        <label style="display: block; margin-top: 20px; font-size: 16px; font-weight: 500;"><b>Username</b></label>
+        <input type="text" class="form-control" id="uname" placeholder="Username" required
+          style="display: block; background-color:rgb(255, 255, 255); border-radius: 3px; padding: 0 10px; margin-top: 8px; font-size: 14px; font-weight: 300; font-weight: 300; width: 100%; height: 40px;">
+      </div>
+      <div class="form-group">
+        <label style="display: block; margin-top: 10px; font-size: 16px; font-weight: 500;"><b>Password</b></label>
+        <input type="password" class="form-control" id="pwd" placeholder="Password"
+          style="display: block; background-color:rgb(255, 255, 255); border-radius: 3px; padding: 0 10px; margin-top: 8px; font-size: 14px; font-weight: 300; font-weight: 300; width: 100%; height: 40px;">
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <label style="display: block; margin-top: 5px; font-size: 16px; font-weight: 500;"><b>First Name</b></label>
+            <input type="text" class="form-control" id="fname" placeholder="firstname" required
+              style="display: block; background-color:rgb(255, 255, 255); border-radius: 3px; padding: 0 10px; margin-top: 8px; font-size: 14px; font-weight: 300; font-weight: 300; width: 100%; height: 40px;">
+          </div>
+          <div class="col">
+            <label style="display: block; margin-top: 5px; font-size: 16px; font-weight: 500;"><b>Last Name</b></label>
+            <input type="text" class="form-control" id="lname" placeholder="lastname" required
+              style="display: block; background-color:rgb(255, 255, 255); border-radius: 3px; padding: 0 10px; margin-top: 8px; font-size: 14px; font-weight: 300; font-weight: 300; width: 100%; height: 40px;">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+
+            <div class="col-6">
+              <label style="display: block; margin-top: 7px; font-size: 16px; font-weight: 500;"><b>Phone
+                  Number</b></label>
+              <input type="text" class="form-control" id="num" placeholder="phone number" required
+                style="display: block; background-color:rgb(255, 255, 255); border-radius: 3px; padding: 0 10px; margin-top: 8px; font-size: 14px; font-weight: 300; font-weight: 300; width: 100%; height: 40px;">
+            </div>
+
+            <div class="col-2">
+              <label style="display: block; margin-top: 7px; font-size: 16px; font-weight: 500;"><b>Birthday</b></label>
+              <input type="text" class="form-control" id="day" placeholder="dd" required
+                style="display: block; background-color:rgb(255, 255, 255); border-radius: 3px; padding: 0 10px; margin-top: 8px; font-size: 14px; font-weight: 300; font-weight: 300; width: 100%; height: 40px;">
+            </div>
+
+            <div class="col-2">
+              <label style="display: block; margin-top: 7px; font-size: 16px; font-weight: 500;"><b>Birthday</b></label>
+              <input type="text" class="form-control" id="day" placeholder="mm" required
+                style="display: block; background-color: rgb(255, 255, 255); border-radius: 3px; padding: 0 10px; margin-top: 8px; font-size: 14px; font-weight: 300; font-weight: 300; width: 100%; height: 40px;">
+            </div>
+
+            <div class="col-2">
+              <label style="display: block; margin-top: 7px; font-size: 16px; font-weight: 500;"><b>Birthday</b></label>
+              <input type="text" class="form-control" id="day" placeholder="yyy" required
+                style="display: block; background-color:  rgb(255, 255, 255); border-radius: 3px; padding: 0 10px; margin-top: 8px; font-size: 14px; font-weight: 300; font-weight: 300; width: 100%; height: 40px;">
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label style="display: block; margin-top: 1px; font-size: 16px; font-weight: 500;"><b>Email</b></label>
+          <input type="text" class="form-control" id="email" placeholder="email" required
+            style="display: block; background-color: rgb(255, 255, 255); border-radius: 3px; padding: 0 10px; margin-top: 8px; font-size: 14px; font-weight: 300; font-weight: 300; width: 100%; height: 40px;">
+        </div>
+        <div class="row">
+          <div class="col">
+            <button type="submit" class="btn btn-primary" id="Login">Submit</button>
+            <a class="btn btn-primary " href='/'>Back</a>
+          </div>
+        </div>
+    </form>
+  </div>
+
+  </div>
+</body>
+
+</html>

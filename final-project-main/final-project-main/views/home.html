@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <title>Arine's Resto Homepage</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="js/home.js"></script>
+  <style>
+    /* Google Font Link */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Geneva", sans-serif;
+      /* color: #fff; */
+    }
+
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 78px;
+      background: #88A47C;
+      padding: 6px 14px;
+      z-index: 99;
+      transition: all 0.5s ease;
+      border-top-left-radius: 0%;
+      border-top-right-radius: 0%;
+      background-image: linear-gradient(to bottom right, #CCD6A6, #678983, #557153, #3C4048);
+    }
+
+    .sidebar.open {
+      width: 250px;
+    }
+
+    .sidebar .logo-details {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .sidebar .logo-details .icon {
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+
+    .sidebar .logo-details .logo_name {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 600;
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+
+    .sidebar.open .logo-details .icon,
+    .sidebar.open .logo-details .logo_name {
+      opacity: 1;
+    }
+
+    .sidebar .logo-details #btn {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      font-size: 22px;
+      transition: all 0.4s ease;
+      font-size: 23px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.5s ease;
+    }
+
+    .sidebar.open .logo-details #btn {
+      text-align: right;
+    }
+
+    .sidebar i {
+      color: #fff;
+      height: 50px;
+      min-width: 50px;
+      font-size: 28px;
+      text-align: center;
+      line-height: 60px;
+    }
+
+    .sidebar .nav-list {
+      margin-top: 40px;
+      height: 100%;
+    }
+
+    .sidebar li {
+      position: relative;
+      margin: 30px 0;
+      list-style: none;
+    }
+
+    .sidebar li .tooltip {
+      position: absolute;
+      top: -20px;
+      left: calc(100% + 15px);
+      z-index: 3;
+      background: #fff;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 400;
+      opacity: 0;
+      white-space: nowrap;
+      pointer-events: none;
+      transition: 0s;
+    }
+
+    .sidebar li:hover .tooltip {
+      opacity: 1;
+      pointer-events: auto;
+      transition: all 0.4s ease;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .sidebar.open li .tooltip {
+      display: none;
+    }
+
+    .sidebar input {
+      font-size: 15px;
+      color: #FFF;
+      font-weight: 400;
+      outline: none;
+      height: 50px;
+      width: 100%;
+      width: 50px;
+      border: none;
+      border-radius: 12px;
+      transition: all 0.5s ease;
+      background: #88A47C;
+    }
+
+    .sidebar.open input {
+      padding: 0 20px 0 50px;
+      width: 100%;
+    }
+
+    .sidebar .bx-search {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      font-size: 22px;
+      background: #0074d9;
+      color: #FFF;
+    }
+
+    .sidebar.open .bx-search:hover {
+      background: #0074d9;
+      color: #FFF;
+    }
+
+    .sidebar .bx-search:hover {
+      background: #FFF;
+      color: #0074d9;
+    }
+
+    .sidebar li a {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      border-radius: 12px;
+      align-items: center;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      background: #080710;
+    }
+
+    .sidebar li a:hover {
+      background: #FFF;
+    }
+
+    .sidebar li a .links_name {
+      color: #7FDBFF;
+      ;
+      font-size: 15px;
+      font-weight: 400;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.4s;
+    }
+
+    .sidebar.open li a .links_name {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .sidebar li a:hover .links_name,
+    .sidebar li a:hover i {
+      transition: all 0.5s ease;
+      color: #0074d9;
+    }
+
+    .sidebar li i {
+      height: 50px;
+      line-height: 50px;
+      font-size: 18px;
+      border-radius: 12px;
+    }
+
+    .sidebar li.profile {
+      position: fixed;
+      height: 60px;
+      width: 78px;
+      left: 0;
+      bottom: -8px;
+      padding: 10px 14px;
+      background: #0074d9;
+      transition: all 0.5s ease;
+      overflow: hidden;
+    }
+
+    .sidebar.open li.profile {
+      width: 250px;
+    }
+
+    .sidebar li .profile-details {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+    }
+
+    .sidebar li img {
+      height: 45px;
+      width: 45px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-right: 10px;
+    }
+
+    .sidebar li.profile .name,
+    .sidebar li.profile .job {
+      font-size: 15px;
+      font-weight: 400;
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    .sidebar li.profile .job {
+      font-size: 12px;
+    }
+
+    .sidebar .profile #log_out {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      background: #0074d9;
+      width: 100%;
+      height: 60px;
+      line-height: 60px;
+      border-radius: 0px;
+      transition: all 0.5s ease;
+    }
+
+    .sidebar.open .profile #log_out {
+      width: 50px;
+      background: none;
+    }
+
+    .home-section {
+      position: relative;
+      background-image: url(http://localhost/final-project-main/final-project-main/public/img/b3.jpg);
+      /* background: hsl(226, 100%, 82%); */
+      min-height: 100vh;
+      top: 0;
+      left: 78px;
+      width: calc(100% - 78px);
+      transition: all 0.5s ease;
+      z-index: 2;
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      /* border-bottom-left-radius: 70%; */
+      /* border-top-right-radius: 20%; */
+      /* background-image: linear-gradient(to bottom right, #da2c38, #ee964b); */
+    }
+
+    .sidebar.open~.home-section {
+      left: 250px;
+      width: calc(100% - 250px);
+    }
+
+    .home-section .text {
+      display: inline-block;
+      color: #0074d9;
+      font-size: 25px;
+      font-weight: 500;
+      margin: 50px
+    }
+
+    @media (max-width: 420px) {
+      .sidebar li .tooltip {
+        display: none;
+      }
+    }
+
+
+    /* footer */
+    .site-footer {
+  background-color: #26272b;
+  padding: 45px 0 20px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #737373;
+  position: relative;
+}
+.site-footer hr {
+  border-top-color: #bbb;
+  opacity: 0.5;
+}
+.site-footer hr.small {
+  margin: 20px 0;
+}
+.site-footer h6 {
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-top: 5px;
+  letter-spacing: 2px;
+}
+.site-footer a {
+  color: #737373;
+}
+.site-footer a:hover {
+  color: #3366cc;
+  text-decoration: none;
+}
+.footer-links {
+  padding-left: 0;
+  list-style: none;
+}
+.footer-links li {
+  display: block;
+}
+.footer-links a {
+  color: #737373;
+}
+.footer-links a:active,
+.footer-links a:focus,
+.footer-links a:hover {
+  color: #3366cc;
+  text-decoration: none;
+}
+.footer-links.inline li {
+  display: inline-block;
+}
+.site-footer .social-icons {
+  text-align: right;
+}
+.site-footer .social-icons a {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 6px;
+  margin-right: 0;
+  border-radius: 100%;
+  background-color: #33353d;
+}
+.copyright-text {
+  margin: 0;
+}
+@media (max-width: 991px) {
+  .site-footer [class^="col-"] {
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 767px) {
+  .site-footer {
+    padding-bottom: 0;
+  }
+  .site-footer .copyright-text,
+  .site-footer .social-icons {
+    text-align: center;
+  }
+}
+.social-icons {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+.social-icons li {
+  display: inline-block;
+  margin-bottom: 4px;
+}
+.social-icons li.title {
+  margin-right: 15px;
+  text-transform: uppercase;
+  color: #96a2b2;
+  font-weight: 700;
+  font-size: 13px;
+}
+.social-icons a {
+  background-color: #eceeef;
+  color: #818a91;
+  font-size: 16px;
+  display: inline-block;
+  line-height: 44px;
+  width: 44px;
+  height: 44px;
+  text-align: center;
+  margin-right: 8px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+.social-icons a:active,
+.social-icons a:focus,
+.social-icons a:hover {
+  color: #fff;
+  background-color: #29aafe;
+}
+.social-icons.size-sm a {
+  line-height: 34px;
+  height: 34px;
+  width: 34px;
+  font-size: 14px;
+}
+.social-icons a.facebook:hover {
+  background-color: #3b5998;
+}
+.social-icons a.twitter:hover {
+  background-color: #00aced;
+}
+.social-icons a.linkedin:hover {
+  background-color: #007bb6;
+}
+.social-icons a.dribbble:hover {
+  background-color: #ea4c89;
+}
+@media (max-width: 767px) {
+  .social-icons li.title {
+    display: block;
+    margin-right: 0;
+    font-weight: 600;
+  }
+}
+
+
+.footer-distributed {
+      border-top-left-radius: 0%;
+      border-top-right-radius: 0%;
+      background-image: linear-gradient(to bottom right, #7D8F69, #678983, #557153, #3C4048, #5F8D4E);
+      background-color: #2e2c2b;
+      box-sizing: border-box;
+      width: 100%;
+      text-align: left;
+      font: bold 16px sans-serif;
+      padding: 50px 50px 60px 50px;
+      margin-top: 80px;
+    }
+
+    .footer-distributed .footer-left,
+    .footer-distributed .footer-center,
+    .footer-distributed .footer-right {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    /* Footer left */
+
+    .footer-distributed .footer-left {
+      width: 30%;
+    }
+
+    .footer-distributed h3 {
+      color: #ffffff;
+      font: normal 36px 'Cookie', cursive;
+      margin: 0;
+    }
+
+    /* The company logo */
+
+    .footer-distributed .footer-left img {
+      width: 30%;
+    }
+
+    .footer-distributed h3 span {
+      color: #e0ac1c;
+    }
+
+    /* Footer links */
+
+    .footer-distributed .footer-links {
+      color: #ffffff;
+      margin: 20px 0 12px;
+    }
+
+    .footer-distributed .footer-links a {
+      display: inline-block;
+      line-height: 1.8;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .footer-distributed .footer-company-name {
+      color: #8f9296;
+      font-size: 14px;
+      font-weight: normal;
+      margin: 0;
+    }
+
+    /* Footer Center */
+
+    .footer-distributed .footer-center {
+      width: 35%;
+    }
+
+
+    .footer-distributed .footer-center i {
+      background-color: #2e2c2b;
+      color: #ffffff;
+      font-size: 25px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 42px;
+      margin: 5px 5px;
+      vertical-align: middle;
+    }
+
+    .footer-distributed .footer-center i.fa-envelope {
+      font-size: 17px;
+      line-height: 38px;
+    }
+
+    .footer-distributed .footer-center p {
+      display: inline-block;
+      color: #ffffff;
+      vertical-align: middle;
+      margin: 0;
+    }
+
+    .footer-distributed .footer-center p span {
+      display: block;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 2;
+    }
+
+    .footer-distributed .footer-center p a {
+      color: #e0ac1c;
+      text-decoration: none;
+      ;
+    }
+
+
+    /* Footer Right */
+
+    .footer-distributed .footer-right {
+      width: 30%;
+    }
+
+    .footer-distributed .footer-company-about {
+      line-height: 20px;
+      color: #92999f;
+      font-size: 13px;
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .footer-distributed .footer-company-about span {
+      display: block;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .footer-distributed .footer-icons {
+      margin-top: 25px;
+    }
+
+    .footer-distributed .footer-icons a {
+      display: inline-block;
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
+      background-color: #c9bc07;
+      border-radius: 2px;
+
+      font-size: 20px;
+      color: #ffffff;
+      text-align: center;
+      line-height: 35px;
+
+      margin-right: 3px;
+      margin-bottom: 5px;
+    }
+
+    :hover{ color: #46C2CB; }
+    /* Here is the code for Responsive Footer */
+    /* You can remove below code if you don't want Footer to be responsive */
+
+
+    @media (max-width: 880px) {
+
+      .footer-distributed .footer-left,
+      .footer-distributed .footer-center,
+      .footer-distributed .footer-right {
+        display: block;
+        width: 100%;
+        margin-bottom: 40px;
+        text-align: center;
+      }
+
+      .footer-distributed .footer-center i {
+        margin-left: 0;
+      }
+
+    }
+   
+  </style>
+
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <br>
+      <i class='bx bx-restaurant icon'></i>
+      <div class="logo_name">Arine's Resto</div>
+      <i class='bx bx-menu' id="btn"></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+        <a href="/home">
+          <i class='bx bx-home'></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+      </li>
+      <li>
+        <a href="/order">
+          <i class='bx bx-cart-alt'></i>
+          <span class="links_name"> My Order</span>
+        </a>
+        <span class="tooltip"> My Order</span>
+      </li>
+      <li>
+        <a href="/profile">
+          <i class='bx bx-user'></i>
+          <span class="links_name"> My Profile</span>
+        </a>
+        <span class="tooltip">My Profile</span>
+      </li>
+      <!-- <li>
+       <a href="/Staff">
+         <i class='bx bxs-user-account' ></i>
+         <span class="links_name">Staff</span>
+       </a>
+       <span class="tooltip">Staff</span> -->
+      </li>
+      <li>
+        <a href="/admin">
+          <i class='bx bx-book'></i>
+          <span class="links_name">Admin</span>
+        </a>
+        <span class="tooltip">Admin</span>
+      </li>
+      <li>
+        <a href="/logout">
+          <i class='bx bx-log-out'></i>
+          <span class="links_name">logout</span>
+        </a>
+        <span class="tooltip">logout</span>
+      </li>
+
+    </ul>
+  </div>
+  
+  <section class="home-section">
+    <div class="container">
+      <!-- <h2>HOME</h2> -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="container py-5">
+            <!-- <div class="row">
+             <div class="col-4">-->
+            <form class="row" id="restSearch">
+              <div class="col-4">
+                <div class="col" style="padding-top:20px;"> 
+                  <button type="submit"class="btn-info">Tampilkan Restaurants</button>
+                </div>              
+              </div>
+            </form>
+          </div>
+        </div>
+       
+        <table class="container py-5 table table-primary table-striped table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Nama</th>
+              <th scope="col">Lokasi</th>
+              <th scope="col">Buka Pukul</th>
+              <th scope="col">Tutup Pukul</th>
+            </tr>
+          </thead>
+
+          <tbody id="rests">
+          </tbody>         
+        </table>
+      </div>
+    </div>  
+    <footer class="footer-distributed">
+
+      <div class="footer-left">
+        <!-- <img src="https://www.blogger.com/img/blogger-logotype-color-black-1x.png"> -->
+        <h3>Arine's<span>Resto</span></h3>
+
+        <p class="footer-links">
+          <a href="home">
+            <i class="bx bx-home"></i>Home</a>
+          |
+          <a href="order.html">
+            <i class="bx bx-cart-alt"></i>My Order</a>
+          |
+          <a href="profile.html">
+            <i class="bx bx-user"></i>My profile</a>
+          |
+          <a href="admin.html">
+            <i class="bx bx-book"></i>Admin</a>
+          |
+          <a href="home.html">
+            <i class="bx bx-log-out"></i>Logout</a>
+          |
+        </p>
+
+        <p class="footer-company-name">© 2022 Teams Arine's Resto.</p>
+      </div>
+
+      <div class="footer-center">
+        <div>
+          <i class="bx bxs-map"></i>
+          <p><span>Jl. Taraman Lima,
+              Sinduharjo - Ngaglik</span>
+            Sleman, Yogyakarta - 55285</p>
+        </div>
+
+        <div>
+          <i class="bx bxs-phone"></i>
+          <p>+62 81369536452</p>
+        </div>
+        <div>
+          <i class="bx bxs-envelope"></i>
+          <p><a href="https://www.samuelpasaribu.com">arinesresto@gmail.com</a></p>
+        </div>
+      </div>
+      <div class="footer-right">
+        <p class="footer-company-about">
+          <span>About the arine's resto</span>
+          adalah salah satu layanan online makanan cepat saji yang populer. Selain memudahkan konsumen mendapatkan
+          makanan, layanan online ini juga membantu meningkatkan penjualan bagi perusahaan (restoran).
+        </p>
+        <div class="footer-icons">
+          <a href="https://www.instagram.com/arines_resto/"><i class="bx bxl-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/ana-nurfaridah-399041256/"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://www.youtube.com/channel/UCZqpNo36EirintLEYS7RvXQ"><i class="bx bxl-youtube"></i></a>
+        </div>
+      </div>
+    </footer>
+  </section>
+    <!-- The content of your page would go here. -->
+
+    <!-- Site footer -->
+
+
+</body>
+
+<script>
+  let sidebar = document.querySelector(".sidebar");
+  let closeBtn = document.querySelector("#btn");
+  // let searchBtn = document.querySelector(".bx-search");
+
+  closeBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+    menuBtnChange();//calling the function(optional)
+  });
+
+  // // Sidebar open when you click on the search iocn
+  // searchBtn.addEventListener("click", () => { 
+  //   sidebar.classList.toggle("open");
+  //   menuBtnChange(); //calling the function(optional)
+  // });
+
+  // following are the code to change sidebar button(optional)
+  function menuBtnChange() {
+    if (sidebar.classList.contains("open")) {
+      closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+    } else {
+      closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");//replacing the iocns class
+    }
+  }
+
+</script>
+</html>
